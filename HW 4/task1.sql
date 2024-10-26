@@ -8,7 +8,7 @@ mysql> CREATE TABLE petPet (
     -> petname VARCHAR(20) NOT NULL,
     ->  owner VARCHAR(45) NOT NULL,
     -> species VARCHAR(45),
-    -> gender ENUM('M', 'F') NOT NULL,
+    -> gender ENUM('M', 'F') NULL,
     -> birth DATE,
     -> death DATE,
     -> PRIMARY KEY (petname),
