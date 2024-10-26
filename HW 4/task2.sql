@@ -1,18 +1,19 @@
 mysql> USE pet_database;
 Database changed
+
 mysql> INSERT INTO petPet VALUES
-    -> ("Fluffy", "Harold", "cat", "Female", "1993-02-04", NULL),
-    -> ("Claws", "Gwen", "cat", "Male", "1994-03-17", NULL),
-    -> ("Buffy", "Harold", "dog", "Female", "1989-05-13", NULL),
-    -> ("Fang", "Benny", "dog", "Male", "1990-08-27", NULL),
-    -> ("Bowser", "Diane", "dog", "Male", "1979-08-31", "1995-07-29"),
-    -> ("Chirpy", "Gwen", "bird", "Female", "1998-09-11", NULL),
-    -> ("Whistler", "Gwen", "bird", "Other", "1997-12-09", NULL),
-    -> ("Slim", "Benny", "snake", "Male", "1996-04-29", NULL),
-    -> ('Puffball','Diane','hamster','Female','1999-03-30',NULL);
-    
-    mysql> INSERT INTO petEvent VALUES
-    -> ("Fluffy", "1995-05-15", "litter", "4 kittens, 3 female, 1 male"),
+    ->     ("Fluffy", "Harold", "cat", "F", "1993-02-04", NULL),
+    ->     ("Claws", "Gwen", "cat", "M", "1994-03-17", NULL),
+    ->     ("Buffy", "Harold", "dog", "F", "1989-05-13", NULL),
+    ->     ("Fang", "Benny", "dog", "M", "1990-08-27", NULL),
+    ->     ("Bowser", "Diane", "dog", "M", "1979-08-31", "1995-07-29"),
+    ->     ("Chirpy", "Gwen", "bird", "F", "1998-09-11", NULL),
+    ->     ("Whistler", "Gwen", "bird", NULL, "1997-12-09", NULL),
+    ->     ("Slim", "Benny", "snake", "M", "1996-04-29", NULL),
+    ->     ('Puffball','Diane','hamster','F','1999-03-30',NULL);
+
+mysql> INSERT INTO petEvent VALUES
+    ->     ("Fluffy", "1995-05-15", "litter", "4 kittens, 3 female, 1 male"),
     ->     ("Buffy", "1993-06-23", "litter", "5 puppies, 2 female, 3 male"),
     ->     ("Buffy", "1994-06-19", "litter", "3 puppies, 3 female"),
     ->     ("Chirpy", "1999-03-21", "vet", "needed beak straightened"),
@@ -21,5 +22,32 @@ mysql> INSERT INTO petPet VALUES
     ->     ("Bowser", "1991-10-12", "kennel", NULL),
     ->     ("Fang", "1991-10-12", "kennel", NULL),
     ->     ("Fang", "1998-08-28", "birthday", "Gave him a new chew toy"),
-    ->     ("Claws", "1998-03-17", "birthday", "Gave him a new flea collar"),
+    ->     ("Claws", "1998-03-17","birthday", "Gave him a new flea collar"),
     ->     ("Whistler", "1998-12-09", "birthday", "First birthday");
+
+    //make updates
+    mysql> INSERT INTO petEvent VALUES ('Fluffy', '2020-10-15', 'vet', 'antibiotics');
+    mysql> INSERT INTO petPet VALUES ('Hammy', 'Diane', 'hamster', 'M', '2010-10-30', NULL);
+    mysql> INSERT INTO petEvent VALUES ('Hammy', '2020-10-15', 'vet', 'antibiotics');
+
+mysql> UPDATE petEvent
+    -> SET remark = '5 kittens, 3 female, 2 male'
+    -> WHERE petname = 'Fluffy' AND eventdate = '1995-05-15' AND eventtype = 'litter';
+    
+mysql> UPDATE petEvent
+    ->  SET petname = 'Claws'
+    ->  WHERE eventdate = '1997-08-03' AND eventtype = 'vet' AND remark = 'broken rib';
+
+mysql> UPDATE petPet
+    -> SET death = '2020-09-01'
+    -> WHERE petname = 'Puffball' AND owner ='Diane' AND species ='hamster' AND  gender ='F'AND birth ='1999-03-30';
+
+ mysql> DELETE FROM petPet WHERE petname = 'Buffy' AND owner = 'Harold' AND species ='dog' AND  gender ='F'AND birth ='1989-05-13';
+ mysql> DELETE FROM petEvent WHERE petname = 'Buffy' AND eventdate = '1993-06-23' AND eventtype = 'litter'AND remark = '5 puppies, 2 female, 3 male';
+ mysql>  DELETE FROM petEvent WHERE petname = 'Buffy' AND eventdate = '1994-06-19' AND eventtype = 'litter'AND remark = '3 puppies, 3 female';
+
+ 
+
+
+ 
+ 
