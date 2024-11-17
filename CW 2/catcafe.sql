@@ -8,7 +8,6 @@ CREATE DATABASE catcafe_database;
 USE catcafe_database;
 
 /* SECTION 1 - CREATE TABLE STATEMENTS */
-
 CREATE TABLE Adopter (
     Adopter_ID INT PRIMARY KEY,
     Name VARCHAR(255),
@@ -56,8 +55,8 @@ CREATE TABLE Cat (
     Worker_ID INT,
     Adopter_ID INT,
     Cafe_ID INT,
-    FOREIGN KEY (Worker_ID) REFERENCES Worker(Worker_ID),
-    FOREIGN KEY (Adopter_ID) REFERENCES Adopter(Adopter_ID),
+    FOREIGN KEY (Worker_ID) REFERENCES Worker(Worker_ID) ON DELETE SET NULL,
+    FOREIGN KEY (Adopter_ID) REFERENCES Adopter(Adopter_ID) ON DELETE SET NULL,
     FOREIGN KEY (Cafe_ID) REFERENCES Cat_Cafe(Cafe_ID)
 );
 
@@ -105,7 +104,7 @@ VALUES
 (7, 'Catty Corner', '02079460990', '789 River View, London E8 9ZQ', 72),
 (8, 'Paws & Whiskers', '02079461000', '45 Highgate Rd, London E8 8GG', 40),
 (9, 'The Purring Cafe', '02079461111', '23 West End, London E1 5DF', 10),
-(10, 'Purrrfect Cafe', '02079461222', '56 Shore Road, London E9 1AB', 15);
+(10, 'Purrrfect Cafe', '02079461222', '56 Shore Road, London E9 1AB', 30);
 
 INSERT INTO Worker (Worker_ID, Worker_Name, Address, Phone_Number, Email_Address, Role, Assigned_Cafe)
 VALUES
@@ -117,47 +116,48 @@ VALUES
 (6, 'Omar Sheikh', '678 Regent Street, London W1B 5SP', '02079461222', 'omar.sheikh@example.com', 'Staff', 2),
 (7, 'Sophia Black', '345 Oxford Street, London W1C 2JT', '02079461333', 'sophia.black@example.com', 'Assistant', 3),
 (8, 'Luke White', '234 Kingsway, London E1 5TL', '02079461444', 'luke.white@example.com', 'Supervisor', 1),
-(9, 'Fiona Green', '567 Market Rd, London E9 1GH', '02079461555', 'fiona.green@example.com', 'Staff', 2),
-(10, 'James Brown', '678 Park Lane, London E4 3PT', '02079461666', 'james.brown@example.com', 'Staff', 3);
+(9, 'Fiona Green', '567 Market Rd, London E9 1GH', '02079461555', 'fiona.green@example.com', 'Manager', 4),
+(10, 'Mohammad Ali', '345 Fleet Street, London EC4Y 1BG', '02079461666', 'mohammad.ali@example.com', 'Assistant', 5);
 
 INSERT INTO Cat (Cat_ID, Cat_Name, Breed, Age, Nature, Health_Status, Vaccination_Date, Behavioral_Notes, Adoption_Status, Worker_ID, Adopter_ID, Cafe_ID)
 VALUES
-(1, 'Mittens', 'British Shorthair', 2, 'Playful', 'Healthy', '2023-01-10', 'Loves to cuddle', 'Available', 1, NULL, 1),
-(2, 'Whiskers', 'Bengal', 3, 'Curious', 'Healthy', '2022-12-12', 'Enjoys exploring', 'Adopted', 2, 3, 2),
-(3, 'Shadow', 'Persian', 5, 'Calm', 'Healthy', '2023-06-05', 'Very relaxed', 'Available', 3, NULL, 3),
-(4, 'Simba', 'Savannah', 4, 'Energetic', 'Healthy', '2023-04-15', 'Needs space to run', 'Adopted', 4, 5, 4),
-(5, 'Bella', 'Maine Coon', 2, 'Affectionate', 'Healthy', '2023-03-11', 'Likes to be pampered', 'Available', 5, NULL, 5),
-(6, 'Oliver', 'Siamese', 3, 'Chatty', 'Healthy', '2023-05-20', 'Very vocal', 'Available', 6, NULL, 6),
-(7, 'Luna', 'Ragdoll', 1, 'Docile', 'Healthy', '2023-08-25', 'Prefers quiet spaces', 'Adopted', 7, 6, 7),
-(8, 'Mochi', 'Russian Blue', 4, 'Playful', 'Healthy', '2023-02-10', 'Very active', 'Available', 8, NULL, 8),
-(9, 'Cleo', 'Sphynx', 2, 'Affectionate', 'Healthy', '2023-09-14', 'Seeks constant attention', 'Adopted', 9, 10, 9),
-(10, 'Leo', 'Tabby', 1, 'Mischievous', 'Healthy', '2023-07-21', 'Always getting into trouble', 'Available', 10, NULL, 10);
+(1, 'Fluffy', 'Maine Coon', 3, 'Playful', 'Healthy', '2023-01-15', 'Loves to be petted', 'Adopted', 1, 1, 1),
+(2, 'Whiskers', 'Siamese', 1, 'Curious', 'Healthy', '2023-02-12', 'Likes to explore', 'Adopted', 2, 1, 2),
+(3, 'Tommy', 'Persian', 4, 'Shy', 'Healthy', '2023-03-15', 'Prefers solitude', 'Available', 3, NULL, 3),
+(4, 'Bella', 'Maine Coon', 3, 'Gentle', 'Healthy', '2023-04-20', 'Loves to sit by the window', 'Adopted', 4, 2, 4),
+(5, 'Snowball', 'Ragdoll', 5, 'Friendly', 'Healthy', '2023-05-10', 'Gets along well with others', 'Available', 5, NULL, 5),
+(6, 'Sasha', 'Bengal', 2, 'Active', 'Healthy', '2023-06-02', 'Loves to climb', 'Adopted', 6, 2, 1),
+(7, 'Luna', 'Maine Coon', 3, 'Affectionate', 'Healthy', '2023-07-10', 'Enjoys cuddling', 'Available', 7, NULL, 2),
+(8, 'Felix', 'Siamese', 1, 'Friendly', 'Healthy', '2023-08-15', 'Likes to socialize', 'Adopted', 8, 3, 3),
+(9, 'Oliver', 'Persian', 4, 'Calm', 'Healthy', '2023-09-12', 'Enjoys lounging', 'Available', 9, NULL, 4),
+(10, 'Zoe', 'Ragdoll', 5, 'Gentle', 'Healthy', '2023-10-01', 'Loves to follow people around', 'Adopted', 10, 4, 5);
+
 
 INSERT INTO Health_Record (Health_Record_ID, Cat_ID, Vaccination_Type, Vaccination_Date, Behavioral_Note)
 VALUES
-(1, 1, 'Rabies', '2023-01-10', 'Loves to cuddle'),
-(2, 2, 'Feline Distemper', '2022-12-12', 'Enjoys exploring'),
-(3, 3, 'Rabies', '2023-06-05', 'Very relaxed'),
-(4, 4, 'Leukemia', '2023-04-15', 'Needs space to run'),
-(5, 5, 'Feline Herpesvirus', '2023-03-11', 'Likes to be pampered'),
-(6, 6, 'Rabies', '2023-05-20', 'Very vocal'),
-(7, 7, 'Feline Distemper', '2023-08-25', 'Prefers quiet spaces'),
-(8, 8, 'Rabies', '2023-02-10', 'Very active'),
-(9, 9, 'Leukemia', '2023-09-14', 'Seeks constant attention'),
-(10, 10, 'Rabies', '2023-07-21', 'Always getting into trouble');
+(1, 1, 'Rabies', '2023-01-05', 'Playful and curious'),
+(2, 2, 'Feline Leukemia', '2023-02-10', 'Social and friendly'),
+(3, 3, 'Feline Distemper', '2023-03-15', 'Shy but affectionate'),
+(4, 4, 'Rabies', '2023-04-20', 'Gentle and calm'),
+(5, 5, 'Feline Leukemia', '2023-05-10', 'Active and energetic'),
+(6, 6, 'Rabies', '2023-06-02', 'Loves climbing and exploring'),
+(7, 7, 'Feline Distemper', '2023-07-10', 'Affectionate and cuddly'),
+(8, 8, 'Feline Leukemia', '2023-08-15', 'Friendly and loves socializing'),
+(9, 9, 'Rabies', '2023-09-12', 'Calm and relaxed'),
+(10, 10, 'Feline Distemper', '2023-10-01', 'Loves following people');
 
 INSERT INTO Cat_Worker (Cat_ID, Worker_ID)
 VALUES
-(1, 2),
-(2, 3),
-(3, 4),
-(4, 5),
-(5, 6),
-(6, 7),
-(7, 1),
-(8, 2),
-(9, 3),
-(10, 4);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
 
 
 /* SECTION 3 - UPDATE STATEMENTS - The queries must be explained in natural (English) language first, and then followed up by respective statements */
@@ -241,13 +241,13 @@ ON Cat.Worker_ID = Worker.Worker_ID;
 
 /* SECTION 6 - DELETE ROWS - The queries must be explained in natural (English) language first, and then followed up by respective statements */
 
-/*1) Delete woker (Sophia Black-ID 7) who is no longer emoloyed*/
-DELETE FROM Worker
-WHERE Worker_ID = 7;
+/*1) Delete Cat cafe (Cat_Cafe ID 9) as it has the lowest visit hist  */
+DELETE FROM Cat_Cafe
+WHERE Cafe_ID = 9;
 
-/*2) Delete a potential adopter (Adopter ID 6) from the potential adopters table*/
-DELETE FROM Potential_Adopter
-WHERE Adopter_ID = 6; 
+/*2) Delete a  adopter (Adopter ID 6) from the  adopters table*/
+DELETE FROM Adopter 
+WHERE Adopter_ID = 6;
 
 
 /* SECTION 7 - DROP TABLES */
