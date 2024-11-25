@@ -23,6 +23,7 @@ LEFT JOIN restBill ON staff_no = waiter_no
 WHERE waiter_no IS NULL; 
 
 --5
+SELECT 
 
 
 
