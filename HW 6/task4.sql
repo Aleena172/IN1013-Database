@@ -25,7 +25,11 @@ WHERE waiter_no IS NULL;
 --5*
 SELECT cust_name, first_name AS headwaiter_first_name, surname AS headwaiter_surname, room_name
 FROM restBill
-
+INNER JOIN restRest_table ON restBill.table_no=restRest_table.table_no
+INNER JOIN restRoom_management ON restRoom_management.room_name=restRest_table.room_name
+INNER JOIN restStaff ON restRoom_management.headwaiter=restStaff.staff_no
+WHERE bill_total = (SELECT max(bill_total) 
+FROM restBill) AND room_date=bill_date;
 
 
 
