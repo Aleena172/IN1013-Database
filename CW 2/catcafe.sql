@@ -3,10 +3,6 @@ Student name: Aleena Bhatti
 Student ID: 240023456            
 */
 
-DROP DATABASE IF EXISTS catcafe_database;
-CREATE DATABASE catcafe_database;
-USE catcafe_database;
-
 /* SECTION 1 - CREATE TABLE STATEMENTS */
 CREATE TABLE Adopter (
     Adopter_ID INT PRIMARY KEY,
