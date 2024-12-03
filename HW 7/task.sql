@@ -17,7 +17,7 @@ FROM restBill
 JOIN restRest_table ON restBill.table_no = restRest_table.table_no
 GROUP BY restRest_table.room_name;
 
---4
+--4*
 CREATE VIEW teamTotals
 AS SELECT
 FROM restBill
