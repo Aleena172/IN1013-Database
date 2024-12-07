@@ -19,5 +19,10 @@ GROUP BY restRest_table.room_name;
 
 --4*
 CREATE VIEW teamTotals
-AS SELECT
+AS SELECT CONCAT('', restStaffHeadwaiter.first_name, restStaffHeadwaiter.surname) AS headwaiter_name, SUM(restBill.bill_total) AS total_sum 
 FROM restBill
+JOIN restStaff AS restStaffWaiter ON restBill.waiter_no = restStaffWaiter.staff_no
+JOIN restStaff AS restStaffHeadwaiter ON restStaffWaiter.headwaiter = restStaffHeadwaiter.staff_no
+GROUP BY restStaffHeadwaiter.staff_no, restStaffHeadwaiter.first_name, restStaffHeadwaiter.surname;
+
+
