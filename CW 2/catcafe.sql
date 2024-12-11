@@ -1,3 +1,4 @@
+
 /*
 Student name: Aleena Bhatti              
 Student ID: 240023456            
@@ -171,32 +172,55 @@ SET Age = Age + 1;
 /* SECTION 4 - SINGLE TABLE SELECT STATEMENTS - The queries must be explained in natural (English) language first, and then followed up by respective SELECTs*/
 
 /* 1)  List all cat cafe's along with their visit history*/
+select '1)' AS '';
+
 SELECT Cafe_Name, Address, Visit_History
 FROM Cat_Cafe;
 
 /* 2)  List all adopters with high intrest levels*/
+select '2)' AS '';
+
 SELECT Name, Interest_Level, Visit_History
 FROM Adopter
-WHERE Interest_Level = 'High'
+WHERE Interest_Level = 'High';
 
 /* 3) Show all workers assigned to the cat cafes*/
+select '2)' AS '';
+
 SELECT Worker_Name, Assigned_Cafe
 FROM Worker;
 
 /* 4)  List Cats with theri special behavioral notes*/
+select '4)' AS '';
+
 SELECT Cat_Name, Breed, Behavioral_Notes
 FROM Cat
 WHERE Behavioral_Notes IS NOT NULL;
 
 /* 5)  Show all adopters that are interested in a specific breed (Bengal)*/
+select '5)' AS '';
+
 SELECT Name, Preferred_Breed, Preferred_Age
 FROM Adopter
 WHERE Preferred_Breed = 'Bengal';
 
 /* 6) Show all the cat in a specific cat cafe (Kitty Coner)*/
+select '6)' AS '';
+
 SELECT Cat_Name, Breed, Cafe_ID
 FROM Cat
 WHERE Cafe_ID = (SELECT Cafe_ID FROM Cat_Cafe WHERE Cafe_Name = 'Kitty Corner');
+
+/* 7) List all cats along with their age & breed*/
+select '7)' AS '';
+
+SELECT Cat_Name, Age, Breed
+FROM Cat;
+
+/* 8) List all adopters with their phone numbers & preferred health */
+select '8)' AS '';
+SELECT Name, Phone_Number, Preferred_Health
+FROM Adopter;
 
 
 /* SECTION 5 - MULTIPLE TABLE SELECT STATEMENTS - The queries must be explained in natural (English) language first, and then followed up by respective SELECTs */
@@ -253,3 +277,5 @@ DROP TABLE Cat;
 DROP TABLE Worker;
 DROP TABLE Cat_Cafe;
 DROP TABLE Adopter;
+
+SHOW TABLES;
